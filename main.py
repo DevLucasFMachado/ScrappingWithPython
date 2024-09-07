@@ -10,5 +10,6 @@ url = st.text_input("Coloque o URL do Website")
 if st.button("Obter os dados"):
     #Escreve no Website a string abaixo
     st.write("Obtenção em andamento...")
+    #armazena o html mandado pela função scrape_website
     resultado = scrape_website(url)
     print(resultado)
