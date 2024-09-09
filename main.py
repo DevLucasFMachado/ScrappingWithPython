@@ -1,5 +1,10 @@
 import streamlit as st
-from scrape import scrape_website
+from scrape import (
+    scrape_website, 
+    split_dom_content, 
+    clean_body_content,
+    extract_body_content,
+)
 
 
 #Criou um titulo para o site
@@ -12,4 +17,11 @@ if st.button("Obter os dados"):
     st.write("Obtenção em andamento...")
     #armazena o html mandado pela função scrape_website
     resultado = scrape_website(url)
-    print(resultado)
+    body_content = extract_body_content(resultado)
+    cleaned_content = clean_body_content(body_content)
+
+    st.session_state.dom_content = cleaned_content
+
+    with st.expander("View DOM Content"):
+        st.text_area("Dom Content", cleaned_content, height=300)
+

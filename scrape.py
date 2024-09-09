@@ -39,3 +39,9 @@ def clean_body_content(body_content):
 
     return cleaned_content
 
+def split_dom_content(dom_content, max_lenght=6000):
+    return[
+        dom_content[i: i + max_lenght] #pega os primeiros 6000 caracteres
+        for i in range(0, len(dom_content), max_lenght) # divide o conteudo em varios blocos do valor max_lenght
+                                                        # termina ao utilizar todos os valores dentro de dom_content
+    ]
