@@ -5,7 +5,7 @@ from scrape import (
     clean_body_content,
     extract_body_content,
 )
-
+from parse import parse_with_ollama
 
 #Criou um titulo para o site
 st.title("Raspando dados com AI")
@@ -16,8 +16,9 @@ if st.button("Obter os dados"):
     #Escreve no Website a string abaixo
     st.write("Obtenção em andamento...")
     #armazena o html mandado pela função scrape_website
-    resultado = scrape_website(url)
-    body_content = extract_body_content(resultado)
+    
+    dom_content = scrape_website(url)
+    body_content = extract_body_content(dom_content)
     cleaned_content = clean_body_content(body_content)
 
     st.session_state.dom_content = cleaned_content
@@ -31,4 +32,6 @@ if "dom_content" in st.session_state:
     if st.button("Analizar"):
         st.write("Analizando o DOM Content")
 
-        dom_chunks = split_dom_content(st.session_state.com_content)
+        dom_chunks = split_dom_content(st.session_state.dom_content)
+        resultado = parse_with_ollama(dom_chunks, parse_description)
+        st.write(resultado)

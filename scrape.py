@@ -15,7 +15,7 @@ def scrape_website(website):
         driver.get(website)
         print("Pagina carregada")
         html = driver.page_source
-        time.sleep(10)
+        time.sleep(3)
         return html
     finally:
         driver.quit()
