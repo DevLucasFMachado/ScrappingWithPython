@@ -4,7 +4,7 @@ import time
 from bs4 import BeautifulSoup
 
 def scrape_website(website):
-    print("Launching chrome brownser")
+    print("Inicializando o brownser: chrome")
 
 
     chrome_driver_path = "./chromedriver.exe"
@@ -13,7 +13,7 @@ def scrape_website(website):
 
     try:
         driver.get(website)
-        print("Page loaded")
+        print("Pagina carregada")
         html = driver.page_source
         time.sleep(10)
         return html
